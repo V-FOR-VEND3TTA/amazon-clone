@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %}
+<div class="container py-4">
+  <h2>Your Cart</h2>
+  {% if cart_items %}
+  <table class="table">
+    <thead>
+      <tr><th>Product</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>R{{ item.product.price }}</td>
+        <td>R{{ item.total_price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h4>Total: R{{ cart_total }}</h4>
+  <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+  {% else %}
+  <p>Your cart is empty.</p>
+  {% endif %}
+</div>
+{% endcomment %}
+<div class="container py-4">
+  <h2>Your Cart</h2>
+  
+  <table class="table">
+    <thead>
+      <tr><th>Product</th><th>Quantity</th><th>Price</th><th>Total</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Chair</td>
+        <td>1</td>
+        <td>R 1959.99</td>
+        <td>R 1959.99</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4>Total: R 1959.99</h4>
+  <a href="#" class="btn btn-primary">Proceed to Checkout</a>
+</div>
+{% endblock %}
