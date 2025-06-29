@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+<title>{% block title %}Home | Amazon Clone{% endblock title %}</title>
+{% block content %}
+<div class="container py-4">
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Welcome to Amazon Clone</h1>
+      <p class="col-md-8 fs-4">Find your next favorite product.</p>
+      <a class="btn btn-primary btn-lg" href="{% url 'product_list' %}">Browse Products</a>
+    </div>
+  </div>
+
+  <h2 class="mb-3">Featured Products</h2>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for product in featured_products %}
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">R{{ product.price }}</p>
+          <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline-primary">View</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
