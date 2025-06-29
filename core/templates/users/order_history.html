@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+  <h2>Order History</h2>
+
+  {% if orders %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Total (R)</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
+          <td>
+            <span class="badge {% if order.status == 'Shipped' %}bg-success{% else %}bg-secondary{% endif %}">
+              {{ order.status }}
+            </span>
+          </td>
+          <td>{{ order.total_amount }}</td>
+          <td>
+            <a href="{% url 'order_detail' order.id %}" class="btn btn-sm btn-outline-primary">View</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-info">You haven't placed any orders yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

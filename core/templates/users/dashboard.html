@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+<title>{% block title %}User Dashboard{% endblock title %}</title>
+{% block content %}
+{% comment %}
+<div class="container py-4">
+  <h2>Welcome, {{ user.username }}</h2>
+  <p><a href="{% url 'order_history' %}">View your past orders</a></p>
+</div>
+{% endcomment %}
+<div class="container py-4">
+  <h2>Welcome, John</h2>
+  <p><a href="#">View your past orders</a></p>
+</div>
+{% endblock %}
